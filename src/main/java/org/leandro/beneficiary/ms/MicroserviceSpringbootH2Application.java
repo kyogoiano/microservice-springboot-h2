@@ -1,4 +1,4 @@
-package com.myzonesoft.todo.microservice;
+package org.leandro.beneficiary.ms;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

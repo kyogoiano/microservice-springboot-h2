@@ -7,13 +7,13 @@ We will build a **Spring Boot Rest CRUD API** for a **Todo Task Application** in
 
 Below mentioned are the ***REST APIs*** for CRUD Operations using **Spring Boot**.
 
-| Description | CRUD Operation  | HTTP Method | REST API Endpoint |
-|:-----------:|:--------------:|:-----------:|:-----------------:|
-| Create New Todo Task | CREATE | POST | `/tasks` |
-| Fetch All Todo Tasks | READ | GET | `/tasks` |
-| Fetch One Todo Task | READ | GET | `/tasks/{id}` |
-| Update One Specific Todo Task | UPDATE | PUT | `/tasks` |
-| Delete One Specific Todo Task | DELETE | DELETE | `/tasks/{id}` |
+|          Description          | CRUD Operation | HTTP Method | REST API Endpoint |
+|:-----------------------------:|:--------------:|:-----------:|:-----------------:|
+|     Create New Todo Task      |     CREATE     |    POST     |     `/tasks`      |
+|     Fetch All Todo Tasks      |      READ      |     GET     |     `/tasks`      |
+|      Fetch One Todo Task      |      READ      |     GET     |   `/tasks/{id}`   |
+| Update One Specific Todo Task |     UPDATE     |     PUT     |     `/tasks`      |
+| Delete One Specific Todo Task |     DELETE     |   DELETE    |   `/tasks/{id}`   |
 
 **Spring Boot Framework** will serve as back-end server and I will be using ***Relational Database*** known as 
 **H2 Database**, *it is also known as an Embedded Java Database*, for persisting(storing) the data.

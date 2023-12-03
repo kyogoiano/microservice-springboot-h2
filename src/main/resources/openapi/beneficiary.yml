@@ -1,0 +1,333 @@
+openapi: 3.0.3
+info:
+  title: Swagger Beneficiary - OpenAPI 3.0
+  description: |-
+    This is a beneficiary microservice api definition
+  termsOfService: https://swagger.io/terms/
+  contact:
+    email: leandro.ueg@gmail.com
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+  version: 1.0.0
+externalDocs:
+  description: Find out more about Swagger
+  url: https://swagger.io
+servers:
+  - url: https://localhost/api/v1
+tags:
+  - name: beneficiary
+    description: Beneficiary object
+  - name: document
+    description: document object
+paths:
+  /beneficiary:
+    put:
+      tags:
+        - beneficiary
+      summary: Update an existing beneficiary
+      description: Update an existing beneficiary by Id
+      operationId: updateBeneficiary
+      requestBody:
+        description: Update an existent beneficiary in the database
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/beneficiary'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/beneficiary'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/beneficiary'
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/beneficiary'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/beneficiary'
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: beneficiary not found
+        '405':
+          description: Validation exception
+      security:
+        - beneficiary_database_auth:
+            - write:beneficiaries
+            - read:beneficiaries
+    post:
+      tags:
+        - beneficiary
+      summary: Add a new beneficiary to the database
+      description: Add a new beneficiary to the database
+      operationId: addBeneficiary
+      requestBody:
+        description: Create a new beneficiary in the database
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/beneficiary'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/beneficiary'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/beneficiary'
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/beneficiary'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/beneficiary'
+        '405':
+          description: Invalid input
+      security:
+        - beneficiary_database_auth:
+            - write:beneficiaries
+            - read:beneficiaries
+    get:
+      tags:
+        - beneficiary
+      summary: List beneficiaries
+      description: List all beneficiaries
+      operationId: getAllBeneficiaries
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/beneficiary'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/beneficiary'
+      security:
+        - beneficiary_database_auth:
+            - read:beneficiaries
+  /beneficiary/{beneficiaryId}/documents:
+    get:
+      tags:
+        - document
+      summary: Finds beneficiaries documents by beneficiary id
+      description: retrieve all beneficiary documents
+      operationId: getDocuments
+      parameters:
+        - name: beneficiaryId
+          in: path
+          description: ID of beneficiary to return
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                uniqueItems: true
+                items:
+                  $ref: '#/components/schemas/document'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/document'
+        '400':
+          description: Invalid ID supplied
+      security:
+        - beneficiary_database_auth:
+            - read:beneficiaries
+  /beneficiary/{beneficiaryId}:
+    get:
+      tags:
+        - beneficiary
+      summary: Find beneficiary by ID
+      description: Returns a single beneficiary
+      operationId: getBeneficiaryById
+      parameters:
+        - name: beneficiaryId
+          in: path
+          description: ID of beneficiary to return
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/beneficiary'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/beneficiary'
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: beneficiary not found
+      security:
+        - api_key: []
+        - beneficiary_database_auth:
+            - read:beneficiaries
+    post:
+      tags:
+        - beneficiary
+      summary: Updates a beneficiary in the database with form data
+      description: ''
+      operationId: updateBeneficiaryWithForm
+      parameters:
+        - name: beneficiaryId
+          in: path
+          description: ID of beneficiary that needs to be updated
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: name
+          in: query
+          description: Name of beneficiary that needs to be updated
+          schema:
+            type: string
+        - name: phone
+          in: query
+          description: Phone of beneficiary that needs to be updated
+          schema:
+            type: string
+      responses:
+        '405':
+          description: Invalid input
+      security:
+        - beneficiary_database_auth:
+            - write:beneficiaries
+            - read:beneficiaries
+    delete:
+      tags:
+        - beneficiary
+      summary: Deletes a beneficiary
+      description: delete a beneficiary
+      operationId: deleteBeneficiary
+      parameters:
+        - name: api_key
+          in: header
+          description: ''
+          required: false
+          schema:
+            type: string
+        - name: beneficiaryId
+          in: path
+          description: beneficiary id to delete
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '204':
+          description: successful enacted operation
+        '400':
+          description: Invalid beneficiary value
+      security:
+        - beneficiary_database_auth:
+            - write:beneficiaries
+            - read:beneficiaries
+
+components:
+  schemas:
+    document:
+      type: object
+      properties:
+        documentId:
+          type: integer
+          format: int64
+        documentType:
+          type: string
+          enum: [common, legal]
+        description:
+          type: string
+        inclusionDate:
+          type: string
+          description: document inclusion date
+          format: date
+        updateDate:
+          type: string
+          description: document update date
+          format: date
+      xml:
+        name: document
+    beneficiary:
+      required:
+        - name
+        - photoUrls
+      type: object
+      properties:
+        beneficiaryId:
+          type: integer
+          format: int64
+          example: 10
+        name:
+          type: string
+          example: Carlos
+        phone:
+          type: string
+          example: +551199991010
+        documents:
+          type: array
+          xml:
+            wrapped: true
+          uniqueItems: true
+          items:
+            $ref: '#/components/schemas/document'
+        birthDate:
+          type: string
+          description: beneficiary birth date
+          format: date
+        inclusionDate:
+          type: string
+          description: beneficiary inclusion date
+          format: date
+        updateDate:
+          type: string
+          description: beneficiary update date
+          format: date
+      xml:
+        name: beneficiary
+  requestBodies:
+    beneficiary:
+      description: beneficiary object that needs to be added to the database
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/beneficiary'
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/beneficiary'
+  securitySchemes:
+    beneficiary_database_auth:
+      type: oauth2
+      flows:
+        implicit:
+          authorizationUrl: https://beneficiarydatabase3.swagger.io/oauth/authorize
+          scopes:
+            write:beneficiaries: modify beneficiaries in your account
+            read:beneficiaries: read your beneficiaries
+    api_key:
+      type: apiKey
+      name: api_key
+      in: header
