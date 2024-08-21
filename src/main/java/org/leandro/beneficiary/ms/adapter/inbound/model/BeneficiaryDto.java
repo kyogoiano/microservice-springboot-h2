@@ -1,24 +1,19 @@
 package org.leandro.beneficiary.ms.adapter.inbound.model;
 
-import java.net.URI;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import java.time.LocalDate;
 import java.util.LinkedHashSet;
 import java.util.Set;
-import org.leandro.beneficiary.ms.adapter.inbound.model.DocumentDto;
+
 import org.springframework.format.annotation.DateTimeFormat;
-import org.openapitools.jackson.nullable.JsonNullable;
-import java.time.OffsetDateTime;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.*;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 
-import java.util.*;
 import jakarta.annotation.Generated;
 
 /**
