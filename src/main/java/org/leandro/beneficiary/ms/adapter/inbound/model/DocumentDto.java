@@ -21,10 +21,10 @@ import jakarta.annotation.Generated;
 /**
  * DocumentDto
  */
-@lombok.Builder @lombok.AllArgsConstructor @lombok.NoArgsConstructor
+@lombok.Builder @lombok.AllArgsConstructor
 
 @JsonTypeName("document")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-12-03T23:28:51.252735900Z[Europe/Lisbon]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-08-20T21:22:15.452425452-03:00[America/Sao_Paulo]", comments = "Generator version: 7.7.0")
 public class DocumentDto {
 
   private Long documentId;
@@ -82,7 +82,7 @@ public class DocumentDto {
   /**
    * Get documentId
    * @return documentId
-  */
+   */
   
   @Schema(name = "documentId", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("documentId")
@@ -102,7 +102,7 @@ public class DocumentDto {
   /**
    * Get documentType
    * @return documentType
-  */
+   */
   
   @Schema(name = "documentType", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("documentType")
@@ -122,7 +122,7 @@ public class DocumentDto {
   /**
    * Get description
    * @return description
-  */
+   */
   
   @Schema(name = "description", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("description")
@@ -142,7 +142,7 @@ public class DocumentDto {
   /**
    * document inclusion date
    * @return inclusionDate
-  */
+   */
   @Valid 
   @Schema(name = "inclusionDate", description = "document inclusion date", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("inclusionDate")
@@ -162,7 +162,7 @@ public class DocumentDto {
   /**
    * document update date
    * @return updateDate
-  */
+   */
   @Valid 
   @Schema(name = "updateDate", description = "document update date", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("updateDate")

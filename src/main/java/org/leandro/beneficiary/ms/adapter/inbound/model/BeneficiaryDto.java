@@ -24,10 +24,10 @@ import jakarta.annotation.Generated;
 /**
  * BeneficiaryDto
  */
-@lombok.Builder @lombok.AllArgsConstructor @lombok.NoArgsConstructor
+@lombok.Builder @lombok.AllArgsConstructor
 
 @JsonTypeName("beneficiary")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-12-03T23:28:51.252735900Z[Europe/Lisbon]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-08-20T21:22:15.452425452-03:00[America/Sao_Paulo]", comments = "Generator version: 7.7.0")
 public class BeneficiaryDto {
 
   private Long beneficiaryId;
@@ -37,7 +37,7 @@ public class BeneficiaryDto {
   private String phone;
 
   @Valid
-  private Set<@Valid DocumentDto> documents;
+  private Set<@Valid DocumentDto> documents = new LinkedHashSet<>();
 
   @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
   private LocalDate birthDate;
@@ -48,6 +48,10 @@ public class BeneficiaryDto {
   @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
   private LocalDate updateDate;
 
+  public BeneficiaryDto() {
+    super();
+  }
+
   public BeneficiaryDto beneficiaryId(Long beneficiaryId) {
     this.beneficiaryId = beneficiaryId;
     return this;
@@ -56,7 +60,7 @@ public class BeneficiaryDto {
   /**
    * Get beneficiaryId
    * @return beneficiaryId
-  */
+   */
   
   @Schema(name = "beneficiaryId", example = "10", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("beneficiaryId")
@@ -76,7 +80,7 @@ public class BeneficiaryDto {
   /**
    * Get name
    * @return name
-  */
+   */
   @NotNull 
   @Schema(name = "name", example = "Carlos", requiredMode = Schema.RequiredMode.REQUIRED)
   @JsonProperty("name")
@@ -96,7 +100,7 @@ public class BeneficiaryDto {
   /**
    * Get phone
    * @return phone
-  */
+   */
   
   @Schema(name = "phone", example = "551199991010", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("phone")
@@ -124,7 +128,7 @@ public class BeneficiaryDto {
   /**
    * Get documents
    * @return documents
-  */
+   */
   @Valid 
   @Schema(name = "documents", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("documents")
@@ -145,7 +149,7 @@ public class BeneficiaryDto {
   /**
    * beneficiary birth date
    * @return birthDate
-  */
+   */
   @Valid 
   @Schema(name = "birthDate", description = "beneficiary birth date", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("birthDate")
@@ -165,7 +169,7 @@ public class BeneficiaryDto {
   /**
    * beneficiary inclusion date
    * @return inclusionDate
-  */
+   */
   @Valid 
   @Schema(name = "inclusionDate", description = "beneficiary inclusion date", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("inclusionDate")
@@ -185,7 +189,7 @@ public class BeneficiaryDto {
   /**
    * beneficiary update date
    * @return updateDate
-  */
+   */
   @Valid 
   @Schema(name = "updateDate", description = "beneficiary update date", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("updateDate")
